@@ -114,3 +114,8 @@ func WithTimeout(duration time.Duration) Option {
 func WithRetry(rc RetryConfig) Option {
 	return wrappedOption{otlpconfig.WithRetry(retry.Config(rc))}
 }
+
+// WithQuery allows one to tell the driver to send query values with the payloads.
+func WithQuery(query map[string][]string) Option {
+	return wrappedOption{otlpconfig.WithQuery(query)}
+}
