@@ -383,6 +383,17 @@ func TestConfigs(t *testing.T) {
 				assert.Equal(t, c.Traces.Timeout, 5*time.Second)
 			},
 		},
+
+		// Query tests
+		{
+			name: "Test With Query",
+			opts: []GenericOption{
+				WithQuery(map[string][]string{"queryKey": {"queryVal"}}),
+			},
+			asserts: func(t *testing.T, c *Config, grpcOption bool) {
+				assert.Equal(t, map[string][]string{"queryKey": {"queryVal"}}, c.Traces.Query)
+			},
+		},
 	}
 
 	for _, tt := range tests {
